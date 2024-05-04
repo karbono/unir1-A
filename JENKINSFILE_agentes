@@ -26,7 +26,7 @@ pipeline {
                 stage('Unit') {
                     agent { label 'unit' }
                     steps {
-                        dir('C:\\Users\\lacei\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\P24\\Caso1ADeveloper'){
+                        dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1ADeveloper'){
                             stash (name: 'unitResult')
                         }
                         unstash 'testStashed'
@@ -46,7 +46,7 @@ pipeline {
                 stage('Rest') {
                     agent { label 'rest' }
                     steps {
-                        dir('C:\\Users\\lacei\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\P24\\Caso1ADeveloper'){
+                        dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1ADeveloper'){
                             stash (name: 'restResult')
                         }
                         unstash 'testStashed'
@@ -57,7 +57,7 @@ pipeline {
                             SET FLASK_APP=%WORKSPACE%\\app\\api.py
                             start flask run
                             SET PYTHONPATH=%WORKSPACE%
-                            start java -jar %WORKSPACE\\wiremock-standalone-3.5.3.jar --port 9090 --root-dir %WORKSPACE%\\test\\wiremock
+                            start java -jar wiremock-standalone-3.5.3.jar --port 9090 --root-dir %WORKSPACE%\\test\\wiremock
                             pytest --junitxml=%WORKSPACE%\\result-rest.xml %WORKSPACE%\\test\\rest
                         '''
                     }
