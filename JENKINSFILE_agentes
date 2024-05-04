@@ -42,7 +42,6 @@ pipeline {
             }
         }
         stage('Tests') {
-            parallel {
                 stage('Unit') {
                     agent { label 'unit' }
                     steps {
@@ -70,7 +69,7 @@ pipeline {
                             stash (name: 'restResult')
                         }
                         unstash 'testStashed'
-			echo WORKSPACE
+			            echo WORKSPACE
                         bat '''
                             whoami
                             cd
@@ -83,7 +82,6 @@ pipeline {
                         '''
                     }
                 }
-            }
         }
         stage('Results') {
             agent { label 'principal' }
