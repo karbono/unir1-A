@@ -58,11 +58,7 @@ pipeline {
                                 SET FLASK_APP=%WORKSPACE%\\app\\api.py
                                 start flask run
                                 set PYTHONPATH=%WORKSPACE%
-			        @echo off
-			        echo Esperando 10 segundos...
-			        timeout /t 10
-			        echo Continuando con el siguiente proceso...
-                                pytest --junitxml=%WORKSPACE%\\result-unit.xml %WORKSPACE%\\test\\unit
+                                start pytest --junitxml=%WORKSPACE%\\result-unit.xml %WORKSPACE%\\test\\unit
                             '''
                         }
                     }
@@ -79,11 +75,7 @@ pipeline {
                             whoami
                             cd
                             start java -jar %WORKSPACE%\\wiremock-standalone-3.5.3.jar --port 9090 --root-dir %WORKSPACE%\\test\\wiremock
-			    @echo off
-			    echo Esperando 10 segundos...
-			    timeout /t 10
-			    echo Continuando con el siguiente proceso...
-                            pytest --junitxml=%WORKSPACE%\\result-rest.xml %WORKSPACE%\\test\\rest
+                            start pytest --junitxml=%WORKSPACE%\\result-rest.xml %WORKSPACE%\\test\\rest
                             exit
                         '''
                     }
