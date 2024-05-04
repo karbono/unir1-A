@@ -50,7 +50,6 @@ pipeline {
                             stash (name: 'restResult')
                         }
                         unstash 'testStashed'
-			unstash 'wiremockJar'
 			echo WORKSPACE
                         bat '''
                             whoami
