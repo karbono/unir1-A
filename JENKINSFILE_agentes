@@ -44,6 +44,7 @@ pipeline {
         stage('Tests') {
             parallel {
                 stage('Unit') {
+		    milestone 1
                     agent { label 'unit' }
                     steps {
                         dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1AFixing'){
@@ -64,6 +65,7 @@ pipeline {
                     }
                 }
                 stage('Rest') {
+		    milestone 1
                     agent { label 'rest' }
                     steps {
                         dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1AFixing'){
