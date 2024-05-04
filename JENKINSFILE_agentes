@@ -13,6 +13,9 @@ pipeline {
                 dir('C:\\Users\\lacei\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\P24\\Caso1ADeveloper'){
                     stash (name: 'testStashed')
                 }
+		dir('C:\\Users\\lacei\\Downloads\\*.jar'){
+                    stash (name: 'wireJar')
+                }
                 echo 'Eyy esto es Python, nada que compilar!'
                 echo WORKSPACE
                 bat '''
@@ -50,6 +53,7 @@ pipeline {
                             stash (name: 'restResult')
                         }
                         unstash 'testStashed'
+			unstash 'wireJar'
 			echo WORKSPACE
                         bat '''
                             whoami
