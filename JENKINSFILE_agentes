@@ -8,7 +8,7 @@ pipeline {
                     def jenkinsInstance = Jenkins.getInstance()
                     
                     // Definir el número de ejecutores
-                    def numeroDeEjecutores = 6 // Cambia este valor según sea necesario
+                    def numeroDeEjecutores = 8 // Cambia este valor según sea necesario
                     
                     // Establecer el número de ejecutores
                     jenkinsInstance.setNumExecutors(numeroDeEjecutores)
@@ -64,9 +64,6 @@ pipeline {
                     }
                 }
                 stage('Rest') {
-                    stage('Milestone1') {
-                        milestone 1
-                    }
                     agent { label 'rest' }
                     steps {
                         dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1AFixing'){
@@ -77,6 +74,8 @@ pipeline {
                         bat '''
                             whoami
                             cd
+                            SET FLASK_APP=%WORKSPACE%\\app\\api.py
+                            start flask run
                             SET PYTHONPATH=%WORKSPACE%
                             start java -jar %WORKSPACE%\\wiremock-standalone-3.5.3.jar --port 9090 --root-dir %WORKSPACE%\\test\\wiremock
                             pytest --junitxml=%WORKSPACE%\\result-rest.xml %WORKSPACE%\\test\\rest
