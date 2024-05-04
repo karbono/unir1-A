@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Get Code') {
             agent { label 'principal' }
@@ -75,13 +75,23 @@ pipeline {
                 }
                 dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1ADeveloper'){
                     junit testResults: 'result*.xml'
+		
                 }
             }
         }
     }
-    post { 
-        always { 
-            cleanWs()
+    post {
+        cleanup {
+            /* clean up our workspace */
+            deleteDir()
+            /* clean up tmp directory */
+            dir("${workspace}@tmp") {
+                deleteDir()
+            }
+            /* clean up script directory */
+            dir("${workspace}@script") {
+                deleteDir()
+            }
         }
     }
 }   
