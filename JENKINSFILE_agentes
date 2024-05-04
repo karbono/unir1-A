@@ -41,7 +41,7 @@ pipeline {
 		'''
             }
         }
-        stage('Tests') {
+        stages ('Tests') {
                 stage('Unit') {
                     agent { label 'unit' }
                     steps {
