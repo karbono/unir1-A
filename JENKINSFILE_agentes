@@ -1,6 +1,26 @@
 pipeline {
     agent none
     stages {
+	stage('Aumentar número de ejecutores') {
+            steps {
+                script {
+                    // Obtener la instancia de Jenkins
+                    def jenkinsInstance = Jenkins.getInstance()
+                    
+                    // Definir el número de ejecutores
+                    def numeroDeEjecutores = 4 // Cambia este valor según sea necesario
+                    
+                    // Establecer el número de ejecutores
+                    jenkinsInstance.setNumExecutors(numeroDeEjecutores)
+                    
+                    // Guardar la configuración actualizada
+                    jenkinsInstance.save()
+                    
+                    // Mostrar un mensaje de confirmación
+                    echo "Número de ejecutores establecido a ${numeroDeEjecutores}"
+                }
+            }
+        }
         stage('Get Code') {
             agent { label 'principal' }
             steps {
