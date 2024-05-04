@@ -8,7 +8,7 @@ pipeline {
                     def jenkinsInstance = Jenkins.getInstance()
                     
                     // Definir el número de ejecutores
-                    def numeroDeEjecutores = 4 // Cambia este valor según sea necesario
+                    def numeroDeEjecutores = 6 // Cambia este valor según sea necesario
                     
                     // Establecer el número de ejecutores
                     jenkinsInstance.setNumExecutors(numeroDeEjecutores)
