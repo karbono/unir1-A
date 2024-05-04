@@ -13,9 +13,9 @@ pipeline {
                 dir('C:\\Users\\lacei\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\P24\\Caso1ADeveloper'){
                     stash (name: 'testStashed')
                 }
-		dir('C:\\Users\\lacei\\Downloads\\'){
-                    stash (name: 'wireJar')
-                }
+		dir('C:\\Users\\lacei\\Downloads\\') {
+   		    stash allowEmpty: false, includes: 'wiremock-standalone-3.5.3.jar', name: 'wireJar'
+		}
                 echo 'Eyy esto es Python, nada que compilar!'
                 echo WORKSPACE
                 bat '''
