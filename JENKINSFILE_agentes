@@ -30,7 +30,7 @@ pipeline {
         stage('Build') {
             agent { label 'principal' }
             steps {
-                dir('C:\\Users\\lacei\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\P24\\Caso1.A'){
+                dir('C:\\Users\\lacei\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\P24\\Caso1AFixing'){
                     stash (name: 'testStashed')
                 }
                 echo 'Eyy esto es Python, nada que compilar!'
@@ -46,7 +46,7 @@ pipeline {
                 stage('Unit') {
                     agent { label 'unit' }
                     steps {
-                        dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1.A'){
+                        dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1AFixing'){
                             stash (name: 'unitResult')
                         }
                         unstash 'testStashed'
@@ -66,7 +66,7 @@ pipeline {
                 stage('Rest') {
                     agent { label 'rest' }
                     steps {
-                        dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1.A'){
+                        dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1AFixing'){
                             stash (name: 'restResult')
                         }
                         unstash 'testStashed'
@@ -90,10 +90,10 @@ pipeline {
             steps {
                 unstash 'unitResult'
                 unstash 'restResult'
-                dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1.A'){
+                dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent2\\workspace\\P24\\Caso1AFixing'){
                     junit testResults: 'result*.xml'
                 }
-                dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1.A'){
+                dir('C:\\Users\\lacei\\Documents\\AgentesJenkins\\Agent1\\workspace\\P24\\Caso1AFixing'){
                     junit testResults: 'result*.xml'
                 }
             }
