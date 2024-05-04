@@ -74,9 +74,6 @@ pipeline {
                         bat '''
                             whoami
                             cd
-                            SET FLASK_APP=%WORKSPACE%\\app\\api.py
-                            start flask run
-                            SET PYTHONPATH=%WORKSPACE%
                             start java -jar %WORKSPACE%\\wiremock-standalone-3.5.3.jar --port 9090 --root-dir %WORKSPACE%\\test\\wiremock
                             pytest --junitxml=%WORKSPACE%\\result-rest.xml %WORKSPACE%\\test\\rest
                             exit
